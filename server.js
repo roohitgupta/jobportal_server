@@ -1,8 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const { connection } = require("./db")
+// const mongoose = require('mongoose')
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { CreateJobPost, GetJobPost } = require("./controller/controller");
+const { CreateJobPost, GetJobPost, CreateApplyPost } = require("./controller/controller");
 
 
 const app = express();
@@ -13,21 +14,20 @@ const JobRoute = express.Router();
 
 
 app.use('/api', JobRoute);
-
 JobRoute.post("/jobpost", CreateJobPost);
 JobRoute.get("/jobpost", GetJobPost);
+JobRoute.post("/applyjob", CreateApplyPost);
 
 
 
 
 
-
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("mongoDB connection Successfull!!"))
-  .catch((error) => console.log(error));
-
-
-app.listen(5000, ()=> {
-    console.log("Server Has Started at Port 5000.")
+app.listen(process.env.PORT || 5000, ()=> {
+    try {
+      connection
+      console.log("Server Has Started at Port 5000.")
+    } catch (error) {
+      console.log("Something went wrong!!")
+    }
 });
+
