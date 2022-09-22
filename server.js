@@ -4,7 +4,7 @@ const { connection } = require("./db")
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { CreateJobPost, GetJobPost, CreateApplyPost } = require("./controller/controller");
-
+const creatorRouter = require('./routes/creatorauth')
 
 const app = express();
 dotenv.config();
@@ -12,11 +12,12 @@ app.use(cors());
 app.use(express.json());
 const JobRoute = express.Router();
 
-
+app.use('/creator', creatorRouter)
 app.use('/api', JobRoute);
 JobRoute.post("/jobpost", CreateJobPost);
 JobRoute.get("/jobpost", GetJobPost);
 JobRoute.post("/applyjob", CreateApplyPost);
+
 
 
 

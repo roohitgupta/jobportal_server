@@ -6,7 +6,11 @@ const JobPost = new mongoose.Schema(
       company: { type: String, required: true },
       location: { type: String, required: true },
       description: { type: String, required: true },
-
+      jobcreatorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "JobCreator",
+        required: true
+    },
     },
     {
       timestamps: true,

@@ -6,7 +6,7 @@ const creatorSchema = new mongoose.Schema({
     name: {type:String, required:true},
     email: {type:String, required:true},
     password: {type:String, required:true},
-    type: {type:String, default:"JobCreator"}
+    type: {type:String, default:"JobPoster"}
 })
 
 
@@ -20,6 +20,6 @@ creatorSchema.methods.checkPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 }
 
-const creatorModel = mongoose.model("JobCreators", creatorSchema)
+const creatorModel = mongoose.model("JobPoster", creatorSchema)
 
-module.exports = creatorModel
+module.exports = creatorModel;

@@ -6,7 +6,7 @@ const seekarSchema = new mongoose.Schema({
     name: {type:String, required:true},
     email: {type:String, required:true},
     password: {type:String, required:true},
-    type: {type:String, default:"Applier"}
+    type: {type:String, default:"JobApplier"}
    
 })
 
